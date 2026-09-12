@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gainly — Smoothies</title>
+<meta name="description" content="Simple, creamy smoothies made for your day. Pick your flavor, choose a pickup time, and pay online with QRIS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%230E3B1E'/><text x='50' y='72' font-size='64' font-family='sans-serif' font-weight='700' fill='%23C9D46B' text-anchor='middle'>G</text></svg>">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --green-900:#0B2F17;
+  --green-800:#0E3B1E;
+  --green-700:#14512A;
+  --green-500:#1E7B3C;
+  --lime:#C9D46B;
+  --lime-soft:#DCE4A0;
+  --cream:#EAE8DC;
+  --cream-2:#F2F0E6;
+  --paper:#FFFDF7;
+  --ink:#0B2F17;
+  --muted:#5E6B5C;
+  --on-dark:#D8DBD2;
+  --on-dark-dim:#A8B3A4;
+  --line:#DAD7C8;
+  --danger:#B3261E;
+
+  --r-sm:10px;
+  --r-md:16px;
+  --r-lg:24px;
+  --r-xl:32px;
+
+  --wrap:1240px;
+  --pad:clamp(20px, 4vw, 56px);
+
+  --font-display:'Fredoka', system-ui, sans-serif;
+  --font-ui:'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font-ui);
+  background:var(--green-800);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,select{font-family:inherit;}
+
+:focus-visible{
+  outline:3px solid var(--lime);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+.wrap{
+  max-width:var(--wrap);
+  margin-inline:auto;
+  padding-inline:var(--pad);
+}
+
+.eyebrow{
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:600;
+  margin:0 0 14px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:60;
+  background:var(--cream);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;height:74px;
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.brand-mark{
+  width:34px;height:34px;border-radius:11px;
+  background:var(--green-800);color:var(--lime);
+  display:grid;place-items:center;
+  font-family:var(--font-display);font-weight:700;font-size:1.1rem;
+}
+.brand-word{
+  font-family:var(--font-ui);font-weight:700;
+  letter-spacing:.06em;font-size:1.02rem;color:var(--ink);
+}
+
+.cart-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--green-800);color:#fff;
+  padding:11px 16px 11px 20px;border-radius:999px;
+  font-weight:600;font-size:.92rem;
+  transition:transform .15s ease, background .15s ease;
+}
+.cart-btn:hover{background:var(--green-700);}
+.cart-btn:active{transform:scale(.97);}
+.cart-count{
+  min-width:24px;height:24px;padding:0 6px;
+  border-radius:999px;background:var(--lime);color:var(--green-900);
+  display:grid;place-items:center;font-size:.8rem;font-weight:700;
+}
+.cart-btn.bump{animation:bump .35s ease;}
+@keyframes bump{0%,100%{transform:scale(1);}40%{transform:scale(1.07);}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{background:var(--green-800);padding-block:clamp(56px,8vw,104px) clamp(64px,9vw,120px);}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center;}
+.hero .eyebrow{color:var(--on-dark-dim);}
+.hero h1{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.9rem, 7.2vw, 5.3rem);
+  line-height:.96;letter-spacing:-.01em;margin:0 0 26px;
+  text-transform:uppercase;color:var(--on-dark);
+}
+.hero h1 .gains{color:var(--lime);display:block;}
+.hero p{
+  color:var(--on-dark);font-size:clamp(1rem,1.4vw,1.09rem);
+  line-height:1.65;max-width:46ch;margin:0 0 34px;
+}
+.btn-lime{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--lime);color:var(--green-900);
+  padding:17px 30px;border-radius:999px;
+  font-weight:600;font-size:1rem;text-decoration:none;
+  transition:transform .15s ease, background .15s ease;
+}
+.btn-lime:hover{background:var(--lime-soft);}
+.btn-lime:active{transform:scale(.98);}
+
+.hero-card{
+  position:relative;
+  border:1px solid rgba(201,212,107,.35);
+  border-radius:var(--r-xl);
+  background:linear-gradient(160deg, rgba(201,212,107,.07), rgba(201,212,107,.02));
+  padding:clamp(38px,5vw,62px) 30px clamp(52px,6vw,76px);
+  text-align:center;
+}
+.hero-card .gsm{
+  font-family:var(--font-display);font-weight:600;
+  letter-spacing:.22em;font-size:1.1rem;color:var(--lime-soft);margin:0 0 18px;
+}
+.hero-card .logo-word{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(3rem,6.5vw,4.6rem);line-height:1;
+  color:var(--lime-soft);margin:0 0 20px;
+}
+.hero-card .tagline{
+  font-family:var(--font-display);font-weight:500;
+  text-transform:uppercase;letter-spacing:.03em;
+  font-size:clamp(.82rem,1.5vw,1.02rem);color:var(--on-dark-dim);margin:0;
+}
+.hero-badge{
+  position:absolute;right:18px;bottom:-26px;
+  background:var(--lime);color:var(--green-900);
+  border-radius:var(--r-md);padding:14px 22px;text-align:left;
+  box-shadow:0 12px 30px rgba(0,0,0,.22);
+}
+.hero-badge small{display:block;font-size:.74rem;opacity:.75;font-weight:500;}
+.hero-badge strong{font-size:1.02rem;font-weight:700;}
+
+/* ============================================================
+   MENU
+   ============================================================ */
+.menu{background:var(--cream);padding-block:clamp(56px,7vw,92px);}
+.menu-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:38px;}
+.menu .eyebrow{color:var(--muted);}
+.menu h2{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.4rem,5.4vw,4rem);line-height:1;margin:0;color:var(--green-900);
+}
+.menu h2 em{font-style:normal;color:var(--green-500);}
+.menu-note{color:var(--muted);font-size:1rem;margin:0 0 6px;}
+
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.card{
+  background:var(--cream-2);border:1px solid rgba(0,0,0,.05);
+  border-radius:var(--r-lg);padding:16px;display:flex;flex-direction:column;
+}
+.card-media{
+  border-radius:var(--r-md);background:#DFDCCF;
+  aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;
+}
+.card-media img{width:100%;height:100%;object-fit:cover;}
+.card-media svg{width:64%;height:auto;}
+.card-row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin:18px 2px 4px;}
+.card-row h3{font-family:var(--font-ui);font-weight:600;font-size:1.12rem;margin:0;color:var(--green-900);}
+.card-price{font-weight:600;color:var(--green-500);white-space:nowrap;}
+.card-desc{color:var(--muted);font-size:.9rem;margin:0 2px 18px;flex:1;}
+.btn-add{
+  display:flex;align-items:center;justify-content:space-between;width:100%;
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-md);
+  padding:14px 18px;font-weight:600;color:var(--green-900);
+  transition:background .15s ease, border-color .15s ease;
+}
+.btn-add:hover{background:var(--lime-soft);border-color:var(--lime);}
+.btn-add span.plus{font-size:1.2rem;line-height:1;color:var(--muted);}
+.btn-add.added{background:var(--lime);border-color:var(--lime);}
+
+/* ============================================================
+   CHECKOUT
+   ============================================================ */
+.checkout{background:var(--green-800);padding-block:clamp(56px,7vw,92px) clamp(64px,8vw,104px);}
+.checkout-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,4vw,56px);align-items:start;}
+.checkout .eyebrow{color:var(--on-dark-dim);}
+.checkout h2{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.4rem,5.4vw,4rem);line-height:1;margin:0 0 22px;color:var(--on-dark);
+}
+.checkout-intro{color:var(--on-dark);line-height:1.65;max-width:34ch;margin:0 0 26px;}
+.checkout-facts{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+.checkout-facts li{color:var(--on-dark-dim);font-size:.92rem;display:flex;gap:10px;align-items:flex-start;}
+.checkout-facts b{color:var(--on-dark);font-weight:600;}
+
+.order-card{
+  background:var(--paper);border-radius:var(--r-xl);
+  padding:clamp(22px,3vw,34px);box-shadow:0 24px 60px rgba(0,0,0,.25);
+}
+.order-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:16px;}
+.order-head h3{font-family:var(--font-display);font-weight:600;font-size:1.5rem;margin:0;color:var(--green-900);}
+.btn-clear{color:var(--muted);font-size:.9rem;text-decoration:underline;text-underline-offset:3px;}
+.btn-clear:hover{color:var(--danger);}
+
+.order-items{border-top:1px solid var(--line);}
+.order-empty{padding:30px 0;color:var(--muted);font-size:.95rem;text-align:center;}
+.order-line{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);}
+.order-line .name{flex:1;min-width:0;}
+.order-line .name strong{display:block;font-weight:600;font-size:1.04rem;color:var(--green-900);}
+.order-line .name small{color:var(--muted);font-size:.84rem;}
+.qty{display:flex;align-items:center;gap:6px;background:#F3F1E8;border-radius:999px;padding:4px;}
+.qty button{width:30px;height:30px;border-radius:999px;display:grid;place-items:center;font-size:1.1rem;color:var(--green-900);transition:background .12s ease;}
+.qty button:hover{background:var(--lime-soft);}
+.qty output{min-width:22px;text-align:center;font-weight:600;font-size:.95rem;}
+.order-line .sum{font-weight:600;min-width:88px;text-align:right;color:var(--green-900);}
+
+.order-total{display:flex;align-items:center;justify-content:space-between;padding:22px 0 4px;}
+.order-total span{font-size:1.05rem;color:var(--muted);}
+.order-total strong{font-family:var(--font-display);font-weight:600;font-size:clamp(1.7rem,3vw,2.1rem);color:var(--green-500);}
+
+.form{display:grid;gap:18px;margin-top:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.field label{display:block;font-size:.88rem;font-weight:500;color:var(--green-900);margin-bottom:7px;}
+.field label .opt{display:block;font-weight:400;color:var(--muted);font-size:.82rem;}
+.field input,.field select{
+  width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-sm);
+  background:#fff;font-size:.98rem;color:var(--ink);
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.field input:hover,.field select:hover{border-color:#BFBBA8;}
+.field input:focus,.field select:focus{outline:none;border-color:var(--green-500);box-shadow:0 0 0 3px rgba(30,123,60,.15);}
+.field.invalid input,.field.invalid select{border-color:var(--danger);}
+.field .err{display:none;color:var(--danger);font-size:.82rem;margin-top:6px;}
+.field.invalid .err{display:block;}
+
+.info-bar{display:flex;align-items:center;gap:12px;background:#EFF3E4;border-radius:var(--r-sm);padding:14px 16px;font-size:.94rem;color:var(--green-900);}
+.info-bar .ic{font-size:1.05rem;}
+.info-bar span.lbl{color:var(--muted);font-size:.86rem;}
+
+.pay-bar{display:flex;align-items:flex-start;gap:14px;background:#EFF3E4;border-radius:var(--r-md);padding:18px;}
+.pay-bar .qr-chip{
+  width:38px;height:38px;border-radius:10px;flex:none;
+  background:var(--green-800);color:var(--lime);
+  display:grid;place-items:center;font-size:.7rem;font-weight:700;
+}
+.pay-bar strong{display:block;font-size:1.05rem;color:var(--green-900);}
+.pay-bar small{color:var(--muted);font-size:.86rem;line-height:1.5;}
+
+.btn-pay{
+  width:100%;background:var(--lime);color:var(--green-900);
+  padding:19px;border-radius:var(--r-md);font-weight:600;font-size:1.05rem;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  transition:background .15s ease, transform .15s ease;
+}
+.btn-pay:hover{background:var(--lime-soft);}
+.btn-pay:active{transform:scale(.99);}
+.btn-pay[disabled]{opacity:.45;cursor:not-allowed;}
+.fine{text-align:center;color:var(--muted);font-size:.8rem;margin:14px 0 0;}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{background:var(--green-900);color:var(--on-dark-dim);padding-block:34px;font-size:.88rem;}
+.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;}
+.site-footer a{color:var(--lime);text-decoration:none;}
+.site-footer a:hover{text-decoration:underline;}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal{
+  position:fixed;inset:0;z-index:100;display:none;place-items:center;
+  padding:20px;background:rgba(6,26,13,.72);backdrop-filter:blur(3px);overflow-y:auto;
+}
+.modal.open{display:grid;}
+.modal-box{
+  background:var(--paper);border-radius:var(--r-xl);
+  width:min(520px,100%);padding:clamp(24px,4vw,36px);margin:auto;
+  animation:pop .22s ease;
+}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98);}to{opacity:1;transform:none;}}
+.modal-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.modal-box h3{font-family:var(--font-display);font-weight:600;font-size:1.6rem;margin:0 0 6px;color:var(--green-900);}
+.modal-box .oid{color:var(--muted);font-size:.88rem;margin:0;}
+.btn-x{width:36px;height:36px;border-radius:999px;flex:none;display:grid;place-items:center;font-size:1.2rem;color:var(--muted);}
+.btn-x:hover{background:#EDEADF;}
+
+.recap{
+  border:1px solid var(--line);border-radius:var(--r-md);
+  padding:16px 18px;margin-top:20px;font-size:.92rem;line-height:1.75;color:var(--ink);
+}
+.recap .rl{display:flex;justify-content:space-between;gap:14px;}
+.recap .meta{border-top:1px solid var(--line);margin-top:10px;padding-top:10px;color:var(--muted);font-size:.86rem;}
+
+.amount-box{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:#EFF3E4;border-radius:var(--r-md);padding:16px 18px;margin:18px 0;
+}
+.amount-box .lbl{font-size:.86rem;color:var(--muted);display:block;}
+.amount-box .val{font-family:var(--font-display);font-weight:600;font-size:1.7rem;color:var(--green-500);}
+.btn-copy{border:1px solid var(--line);background:#fff;border-radius:var(--r-sm);padding:10px 14px;font-size:.86rem;font-weight:500;color:var(--green-900);}
+.btn-copy:hover{background:var(--lime-soft);border-color:var(--lime);}
+
+.qris-frame{border:1px solid var(--line);border-radius:var(--r-md);padding:18px;text-align:center;background:#fff;}
+.qris-frame img{width:min(260px,100%);margin-inline:auto;border-radius:8px;}
+.qris-missing{border:2px dashed var(--line);border-radius:var(--r-sm);padding:34px 20px;color:var(--muted);font-size:.88rem;line-height:1.6;}
+.qris-missing code{background:#EDEADF;padding:2px 6px;border-radius:4px;font-size:.85em;}
+.qris-cap{margin:14px 0 0;font-size:.84rem;color:var(--muted);}
+
+.steps{list-style:none;padding:0;margin:20px 0 22px;display:grid;gap:10px;counter-reset:s;}
+.steps li{display:flex;gap:12px;font-size:.92rem;color:var(--ink);line-height:1.5;counter-increment:s;}
+.steps li::before{
+  content:counter(s);flex:none;width:22px;height:22px;border-radius:999px;
+  background:var(--green-800);color:var(--lime);display:grid;place-items:center;
+  font-size:.75rem;font-weight:600;margin-top:1px;
+}
+.btn-wa{
+  width:100%;background:var(--green-800);color:#fff;padding:17px;border-radius:var(--r-md);
+  font-weight:600;font-size:1rem;text-align:center;text-decoration:none;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:background .15s ease;
+}
+.btn-wa:hover{background:var(--green-700);}
+.link-alt{
+  display:block;width:100%;text-align:center;margin-top:14px;
+  color:var(--muted);font-size:.88rem;text-decoration:underline;text-underline-offset:3px;
+}
+.link-alt:hover{color:var(--green-500);}
+.modal-fine{text-align:center;color:var(--muted);font-size:.8rem;margin:12px 0 0;line-height:1.5;}
+
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);
+  background:var(--green-900);color:#fff;padding:13px 22px;border-radius:999px;
+  font-size:.9rem;font-weight:500;opacity:0;pointer-events:none;z-index:120;
+  transition:opacity .2s ease, transform .2s ease;
+}
+.toast.show{opacity:1;transform:translate(-50%,0);}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-card{order:-1;}
+  .checkout-grid{grid-template-columns:1fr;}
+  .menu-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:640px){
+  .header-inner{height:64px;}
+  .brand-word{font-size:.95rem;}
+  .menu-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .order-line{flex-wrap:wrap;}
+  .order-line .sum{min-width:0;margin-left:auto;}
+  .hero-badge{right:50%;transform:translateX(50%);}
+  .amount-box{flex-direction:column;align-items:flex-start;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#hero" class="brand">
+      <span class="brand-mark">G</span>
+      <span class="brand-word">GAINLY</span>
+    </a>
+    <button class="cart-btn" id="cartBtn" aria-label="Lihat pesanan">
+      Cart <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Smoothies · Pickup only</p>
+      <h1>Good taste.<span class="gains">Good gains.</span></h1>
+      <p>Simple, creamy smoothies made for your day. Pick your flavor, choose a pickup time, and pay online with QRIS.</p>
+      <a href="#menu" class="btn-lime">Order a smoothie <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="hero-card">
+      <p class="gsm">GSM</p>
+      <p class="logo-word">Gainly</p>
+      <p class="tagline">"Your goal. Your taste. Your smoothie."</p>
+      <div class="hero-badge">
+        <small>100% pickup</small>
+        <strong>QRIS ready</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <div>
+        <p class="eyebrow">The menu</p>
+        <h2>Pick your <em>favorite.</em></h2>
+      </div>
+      <p class="menu-note">Three flavors. No overthinking.</p>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<section class="checkout" id="checkout">
+  <div class="wrap checkout-grid">
+    <div>
+      <p class="eyebrow">Checkout</p>
+      <h2>Ready when you are.</h2>
+      <p class="checkout-intro">Gainly is pickup only. We'll prepare your smoothies for the time you choose.</p>
+      <ul class="checkout-facts">
+        <li><span aria-hidden="true">📍</span><span>Ambil di <b id="factLocation">—</b></span></li>
+        <li><span aria-hidden="true">⏱</span><span>Datang <b>±5 menit</b> sebelum jam pickup</span></li>
+        <li><span aria-hidden="true">💬</span><span>Konfirmasi via <b>WhatsApp</b>, bayar pakai <b>QRIS</b></span></li>
+      </ul>
+    </div>
+
+    <div class="order-card">
+      <div class="order-head">
+        <h3>Your order</h3>
+        <button class="btn-clear" id="clearBtn">Clear</button>
+      </div>
+
+      <div class="order-items" id="orderItems"></div>
+
+      <div class="order-total">
+        <span>Total</span>
+        <strong id="orderTotal">Rp 0</strong>
+      </div>
+
+      <div class="form">
+        <div class="form-row">
+          <div class="field" id="f-name">
+            <label for="name">Full name</label>
+            <input type="text" id="name" placeholder="Your name" autocomplete="name">
+            <p class="err">Nama masih kosong.</p>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="phone">WhatsApp / phone</label>
+            <input type="tel" id="phone" placeholder="08xxxxxxxxxx" autocomplete="tel" inputmode="numeric">
+            <p class="err">Masukkan nomor WhatsApp yang aktif (min. 9 digit).</p>
+          </div>
+        </div>
+
+        <div class="field" id="f-email">
+          <label for="email">Email <span class="opt">(optional)</span></label>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+          <p class="err">Format email belum benar.</p>
+        </div>
+
+        <div class="form-row">
+          <div class="field" id="f-date">
+            <label for="date">Pickup date</label>
+            <input type="date" id="date">
+            <p class="err">Pilih tanggal pickup.</p>
+          </div>
+          <div class="field" id="f-time">
+            <label for="time">Pickup time</label>
+            <select id="time"><option value="">Pilih jam</option></select>
+            <p class="err">Pilih jam pickup.</p>
+          </div>
+        </div>
+
+        <div class="info-bar">
+          <span class="ic" aria-hidden="true">📍</span>
+          <span><span class="lbl">Pickup location</span><br><b id="pickupLoc">—</b></span>
+        </div>
+
+        <div class="pay-bar">
+          <span class="qr-chip" aria-hidden="true">QR</span>
+          <div>
+            <strong>Kirim pesanan, lalu bayar QRIS</strong>
+            <small>Pesanan dikirim ke WhatsApp kami dulu, kode QRIS muncul setelah itu.</small>
+          </div>
+        </div>
+
+        <button class="btn-pay" id="payBtn">Continue to payment <span aria-hidden="true">→</span></button>
+        <p class="fine">By placing the order, you agree that this is a pickup-only order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Gainly — Smoothies. Pickup only.</span>
+    <span>Butuh bantuan? <a id="footWa" href="#">Chat WhatsApp</a></span>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="modal" id="payModal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+  <div class="modal-box">
+    <div class="modal-top">
+      <div>
+        <h3 id="payTitle">Kirim pesanan kamu</h3>
+        <p class="oid">Order <b id="orderId">—</b></p>
+      </div>
+      <button class="btn-x" id="closeModal" aria-label="Tutup">✕</button>
+    </div>
+
+    <!-- STEP 1 : kirim ke WhatsApp -->
+    <div id="step1">
+      <div class="recap" id="recap"></div>
+
+      <ol class="steps">
+        <li>Tekan tombol hijau di bawah — WhatsApp terbuka dengan detail pesanan sudah terisi.</li>
+        <li>Tekan tombol kirim di WhatsApp.</li>
+        <li>Kembali ke sini, kode QRIS akan muncul.</li>
+      </ol>
+
+      <a class="btn-wa" id="waSendBtn" href="#" target="_blank" rel="noopener">
+        <span aria-hidden="true">💬</span> Kirim pesanan ke WhatsApp
+      </a>
+      <p class="modal-fine">Pesanan belum terkunci sebelum dikirim.</p>
+    </div>
+
+    <!-- STEP 2 : bayar QRIS -->
+    <div id="step2" hidden>
+      <div class="amount-box">
+        <div>
+          <span class="lbl">Jumlah yang harus dibayar</span>
+          <span class="val" id="payAmount">Rp 0</span>
+        </div>
+        <button class="btn-copy" id="copyAmount">Salin nominal</button>
+      </div>
+
+      <div class="qris-frame">
+        <div id="qrisSlot"></div>
+        <p class="qris-cap" id="qrisCap">—</p>
+      </div>
+
+      <ol class="steps">
+        <li>Scan QRIS di atas pakai e-wallet atau mobile banking.</li>
+        <li>Ketik nominalnya <b id="stepAmount">—</b> persis, jangan dibulatkan.</li>
+        <li>Screenshot bukti bayarnya.</li>
+        <li>Kirim screenshot itu di chat WhatsApp tadi.</li>
+      </ol>
+
+      <a class="btn-wa" id="waProofBtn" href="#" target="_blank" rel="noopener">
+        <span aria-hidden="true">📤</span> Buka chat untuk kirim bukti bayar
+      </a>
+      <p class="modal-fine">Pesanan diproses setelah bukti bayar diterima.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   KONFIGURASI — ubah bagian ini saja
+   ============================================================ */
+const CONFIG = {
+  /* Nomor WhatsApp penerima order. Format internasional, tanpa + dan tanpa 0.
+     Contoh: 0812-3456-7890  ->  "6281234567890"                              */
+  whatsapp: "6287784835252",
+
+  /* URL Google Apps Script untuk mencatat order otomatis ke Google Sheet.
+     Lihat file apps-script.gs + CARA-PAKAI.md. Kosongkan kalau belum dipakai. */
+  logUrl: "https://script.google.com/macros/s/AKfycbzuxw97FKc8yvTWvRNqh2sI5jNi21bitraV53hta7qN3_3yTUR8RcbV5lnIzdEemIQA/exec",
+
+  /* Gambar QRIS milikmu. Taruh di folder yang sama dengan index.html.        */
+  qrisImage: "qris.png",
+
+  merchantName: "GAINLY",
+  pickupLocation: "Gainly Pickup Point — Campus",
+
+  timeSlots: [
+    "10:00–10:30","10:30–11:00","11:00–11:30","11:30–12:00",
+    "13:00–13:30","13:30–14:00","14:00–14:30","14:30–15:00",
+    "15:00–15:30","15:30–16:00","16:00–16:30","16:30–17:00"
+  ],
+
+  maxDaysAhead: 14,
+
+  menu: [
+    { id:"banana-choco", name:"Banana Chocolate",    price:18000, desc:"Banana + chocolate goodness", image:"", tint:"#E6DCC6" },
+    { id:"pb-banana",    name:"Peanut Butter Banana", price:20000, desc:"Creamy, nutty & filling",    image:"", tint:"#EDE4CF" },
+    { id:"strawberry",   name:"Strawberry",           price:18000, desc:"Fresh, fruity & smooth",     image:"", tint:"#E8C3C3" }
+  ]
+};
+
+/* ============================================================
+   STATE & HELPERS
+   ============================================================ */
+const cart = new Map();
+const $ = (s, el=document) => el.querySelector(s);
+const rupiah = n => "Rp " + n.toLocaleString("id-ID");
+const itemById = id => CONFIG.menu.find(m => m.id === id);
+
+function cupSVG(tint){
+  return '<svg viewBox="0 0 160 200" aria-hidden="true">' +
+    '<ellipse cx="80" cy="188" rx="46" ry="7" fill="rgba(0,0,0,.07)"/>' +
+    '<path d="M34 52 h92 l-10 126 a14 14 0 0 1 -14 13 h-44 a14 14 0 0 1 -14 -13 z" fill="' + tint + '"/>' +
+    '<path d="M34 52 h92 l-3 34 h-86 z" fill="rgba(255,255,255,.45)"/>' +
+    '<rect x="28" y="38" width="104" height="18" rx="9" fill="rgba(255,255,255,.75)"/>' +
+    '<path d="M88 38 l10 -30 h10" stroke="rgba(255,255,255,.85)" stroke-width="9" fill="none" stroke-linecap="round"/>' +
+    '<text x="80" y="140" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="26" fill="rgba(255,255,255,.7)">GAINLY</text>' +
+    '</svg>';
+}
+
+/* ============================================================
+   MENU
+   ============================================================ */
+function renderMenu(){
+  $("#menuGrid").innerHTML = CONFIG.menu.map(m => `
+    <article class="card">
+      <div class="card-media" style="background:${m.tint}">
+        ${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : cupSVG(m.tint)}
+      </div>
+      <div class="card-row">
+        <h3>${m.name}</h3>
+        <span class="card-price">${rupiah(m.price)}</span>
+      </div>
+      <p class="card-desc">${m.desc}</p>
+      <button class="btn-add" data-add="${m.id}">
+        Add to order <span class="plus" aria-hidden="true">+</span>
+      </button>
+    </article>`).join("");
+}
+
+/* ============================================================
+   CART
+   ============================================================ */
+function total(){
+  let t = 0;
+  cart.forEach((q, id) => t += itemById(id).price * q);
+  return t;
+}
+
+function renderCart(){
+  const box = $("#orderItems");
+  if (cart.size === 0){
+    box.innerHTML = '<p class="order-empty">Keranjang masih kosong. Pilih smoothie di menu dulu ya.</p>';
+  } else {
+    box.innerHTML = [...cart].map(([id, qty]) => {
+      const m = itemById(id);
+      return `<div class="order-line">
+          <div class="name"><strong>${m.name}</strong><small>${rupiah(m.price)} each</small></div>
+          <div class="qty">
+            <button data-dec="${id}" aria-label="Kurangi ${m.name}">−</button>
+            <output>${qty}</output>
+            <button data-inc="${id}" aria-label="Tambah ${m.name}">+</button>
+          </div>
+          <div class="sum">${rupiah(m.price * qty)}</div>
+        </div>`;
+    }).join("");
+  }
+  $("#cartCount").textContent = [...cart.values()].reduce((a,b) => a+b, 0);
+  $("#orderTotal").textContent = rupiah(total());
+  $("#payBtn").disabled = cart.size === 0;
+}
+
+function addToCart(id){
+  cart.set(id, (cart.get(id) || 0) + 1);
+  renderCart();
+  const btn = $(`[data-add="${id}"]`);
+  btn.classList.add("added");
+  setTimeout(() => btn.classList.remove("added"), 450);
+  const cb = $("#cartBtn");
+  cb.classList.add("bump");
+  setTimeout(() => cb.classList.remove("bump"), 360);
+  showToast(itemById(id).name + " ditambahkan");
+}
+
+let toastTimer;
+function showToast(msg){
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+function setupForm(){
+  const sel = $("#time");
+  CONFIG.timeSlots.forEach(s => {
+    const o = document.createElement("option");
+    o.value = s; o.textContent = s;
+    sel.appendChild(o);
+  });
+
+  const today = new Date();
+  const iso = d => d.getFullYear() + "-" +
+    String(d.getMonth()+1).padStart(2,"0") + "-" +
+    String(d.getDate()).padStart(2,"0");
+
+  const di = $("#date");
+  di.min = iso(today);
+  const max = new Date(today);
+  max.setDate(max.getDate() + CONFIG.maxDaysAhead);
+  di.max = iso(max);
+  di.value = iso(today);
+
+  $("#pickupLoc").textContent    = CONFIG.pickupLocation;
+  $("#factLocation").textContent = CONFIG.pickupLocation;
+  $("#qrisCap").textContent      = "Atas nama " + CONFIG.merchantName;
+  $("#year").textContent         = today.getFullYear();
+  $("#footWa").href              = "https://wa.me/" + CONFIG.whatsapp;
+}
+
+function markInvalid(id, bad){ $("#" + id).classList.toggle("invalid", bad); }
+
+function validate(){
+  const name  = $("#name").value.trim();
+  const phone = $("#phone").value.replace(/\D/g, "");
+  const email = $("#email").value.trim();
+  const date  = $("#date").value;
+  const time  = $("#time").value;
+
+  const bad = {
+    name:  name.length < 2,
+    phone: phone.length < 9,
+    email: email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email),
+    date:  !date,
+    time:  !time
+  };
+  Object.entries(bad).forEach(([k,v]) => markInvalid("f-" + k, v));
+
+  const firstBad = Object.keys(bad).find(k => bad[k]);
+  if (firstBad){
+    const el = $("#" + firstBad);
+    el.focus();
+    el.scrollIntoView({ block:"center", behavior:"smooth" });
+    return null;
+  }
+  return { name, phone, email, date, time };
+}
+
+/* ============================================================
+   ORDER
+   ============================================================ */
+function makeOrderId(){
+  const d = new Date(), p = n => String(n).padStart(2,"0");
+  return "GNL-" + String(d.getFullYear()).slice(2) + p(d.getMonth()+1) + p(d.getDate())
+       + "-" + Math.floor(1000 + Math.random()*9000);
+}
+
+function prettyDate(iso){
+  const [y,m,d] = iso.split("-").map(Number);
+  return new Date(y, m-1, d).toLocaleDateString("id-ID",
+    { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+}
+
+function itemLines(){
+  return [...cart].map(([id, qty]) => {
+    const m = itemById(id);
+    return qty + "× " + m.name + " — " + rupiah(m.price * qty);
+  });
+}
+
+function buildWaText(o, withProof){
+  const tail = withProof
+    ? "Saya sudah bayar lewat QRIS, bukti transfernya saya kirim di chat ini ya. Terima kasih!"
+    : "Mohon dikonfirmasi ya. Setelah ini saya bayar lewat QRIS. Terima kasih!";
+  return [
+    "Halo " + CONFIG.merchantName + "! Saya mau pesan.",
+    "",
+    "Order ID: " + o.id,
+    "Nama: " + o.name,
+    "No. WA: " + o.phone,
+    "Email: " + (o.email || "-"),
+    "",
+    "Pesanan:",
+    ...itemLines().map(l => "• " + l),
+    "Total: " + rupiah(o.total),
+    "",
+    "Pickup: " + prettyDate(o.date),
+    "Jam: " + o.time,
+    "Lokasi: " + CONFIG.pickupLocation,
+    "",
+    tail
+  ].join("\n");
+}
+
+/* catat order ke Google Sheet — diam-diam, tidak menghambat pembeli */
+function logOrder(o){
+  if (!CONFIG.logUrl) return;
+  try{
+    fetch(CONFIG.logUrl, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        id: o.id, name: o.name, phone: o.phone, email: o.email || "",
+        items: itemLines().join(" | "),
+        total: o.total, date: o.date, time: o.time,
+        location: CONFIG.pickupLocation
+      })
+    }).catch(() => {});
+  }catch(_){}
+}
+
+function renderQris(){
+  const slot = $("#qrisSlot");
+  const img = new Image();
+  img.alt = "Kode QRIS " + CONFIG.merchantName;
+  img.src = CONFIG.qrisImage;
+  img.onload  = () => { slot.innerHTML = ""; slot.appendChild(img); };
+  img.onerror = () => {
+    slot.innerHTML = '<div class="qris-missing">Gambar QRIS belum ada.<br>' +
+      'Simpan kode QRIS kamu sebagai <code>' + CONFIG.qrisImage + '</code> ' +
+      'di folder yang sama dengan <code>index.html</code>.</div>';
+  };
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+let currentOrder = null;
+
+function openModal(){
+  const data = validate();
+  if (!data) return;
+
+  currentOrder = { ...data, id: makeOrderId(), total: total() };
+
+  $("#orderId").textContent = currentOrder.id;
+  $("#recap").innerHTML =
+    itemLines().map(l => {
+      const i = l.lastIndexOf(" — ");
+      return '<div class="rl"><span>' + l.slice(0, i) + '</span><b>' + l.slice(i+3) + '</b></div>';
+    }).join("") +
+    '<div class="rl" style="margin-top:8px"><b>Total</b><b>' + rupiah(currentOrder.total) + '</b></div>' +
+    '<div class="meta">' + currentOrder.name + ' · ' + currentOrder.phone + '<br>' +
+    prettyDate(currentOrder.date) + ' · ' + currentOrder.time + '</div>';
+
+  $("#payAmount").textContent  = rupiah(currentOrder.total);
+  $("#stepAmount").textContent = rupiah(currentOrder.total);
+
+  const base = "https://wa.me/" + CONFIG.whatsapp + "?text=";
+  $("#waSendBtn").href  = base + encodeURIComponent(buildWaText(currentOrder, false));
+  $("#waProofBtn").href = base + encodeURIComponent(buildWaText(currentOrder, true));
+
+  $("#step1").hidden = false;
+  $("#step2").hidden = true;
+  $("#payTitle").textContent = "Kirim pesanan kamu";
+
+  logOrder(currentOrder);
+
+  $("#payModal").classList.add("open");
+  document.body.style.overflow = "hidden";
+  $("#closeModal").focus();
+}
+
+function goStep2(){
+  $("#step1").hidden = true;
+  $("#step2").hidden = false;
+  $("#payTitle").textContent = "Bayar pesanan kamu";
+  renderQris();
+}
+
+function closeModal(){
+  $("#payModal").classList.remove("open");
+  document.body.style.overflow = "";
+  $("#payBtn").focus();
+}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+document.addEventListener("click", e => {
+  const add = e.target.closest("[data-add]");
+  if (add) return addToCart(add.dataset.add);
+
+  const inc = e.target.closest("[data-inc]");
+  if (inc){ cart.set(inc.dataset.inc, cart.get(inc.dataset.inc) + 1); return renderCart(); }
+
+  const dec = e.target.closest("[data-dec]");
+  if (dec){
+    const id = dec.dataset.dec, q = cart.get(id) - 1;
+    q <= 0 ? cart.delete(id) : cart.set(id, q);
+    return renderCart();
+  }
+});
+
+$("#cartBtn").addEventListener("click", () =>
+  document.getElementById("checkout").scrollIntoView({ behavior:"smooth" }));
+
+$("#clearBtn").addEventListener("click", () => {
+  if (cart.size === 0) return;
+  cart.clear(); renderCart(); showToast("Pesanan dikosongkan");
+});
+
+$("#payBtn").addEventListener("click", openModal);
+$("#closeModal").addEventListener("click", closeModal);
+$("#waSendBtn").addEventListener("click", () => setTimeout(goStep2, 400));
+
+$("#payModal").addEventListener("click", e => { if (e.target.id === "payModal") closeModal(); });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && $("#payModal").classList.contains("open")) closeModal();
+});
+
+$("#copyAmount").addEventListener("click", async () => {
+  if (!currentOrder) return;
+  try{
+    await navigator.clipboard.writeText(String(currentOrder.total));
+    showToast("Nominal disalin: " + currentOrder.total);
+  }catch(_){ showToast("Nominal: " + currentOrder.total); }
+});
+
+["name","phone","email","date","time"].forEach(id =>
+  $("#" + id).addEventListener("input", () => markInvalid("f-" + id, false)));
+
+renderMenu();
+setupForm();
+renderCart();
+</script>
+</body>
+</html>
