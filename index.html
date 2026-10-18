@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gainly — Smoothies</title>
-<meta name="description" content="Simple, creamy smoothies made for your day. Pick your flavor, choose a pickup time, and pay online with QRIS.">
+<title>Giny’s — Smoothies</title>
+<meta name="description" content="Your Goal. Your Taste. Your smoothie. Pilih smoothie Giny’s, atur add-on, lalu ambil di pickup point.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%230E3B1E'/><text x='50' y='72' font-size='64' font-family='sans-serif' font-weight='700' fill='%23C9D46B' text-anchor='middle'>G</text></svg>">
-
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
 /* ============================================================
    TOKENS
@@ -119,102 +118,6 @@ input,select{font-family:inherit;}
 }
 .cart-btn.bump{animation:bump .35s ease;}
 @keyframes bump{0%,100%{transform:scale(1);}40%{transform:scale(1.07);}}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{background:var(--green-800);padding-block:clamp(56px,8vw,104px) clamp(64px,9vw,120px);}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center;}
-.hero .eyebrow{color:var(--on-dark-dim);}
-.hero h1{
-  font-family:var(--font-display);font-weight:600;
-  font-size:clamp(2.9rem, 7.2vw, 5.3rem);
-  line-height:.96;letter-spacing:-.01em;margin:0 0 26px;
-  text-transform:uppercase;color:var(--on-dark);
-}
-.hero h1 .gains{color:var(--lime);display:block;}
-.hero p{
-  color:var(--on-dark);font-size:clamp(1rem,1.4vw,1.09rem);
-  line-height:1.65;max-width:46ch;margin:0 0 34px;
-}
-.btn-lime{
-  display:inline-flex;align-items:center;gap:12px;
-  background:var(--lime);color:var(--green-900);
-  padding:17px 30px;border-radius:999px;
-  font-weight:600;font-size:1rem;text-decoration:none;
-  transition:transform .15s ease, background .15s ease;
-}
-.btn-lime:hover{background:var(--lime-soft);}
-.btn-lime:active{transform:scale(.98);}
-
-.hero-card{
-  position:relative;
-  border:1px solid rgba(201,212,107,.35);
-  border-radius:var(--r-xl);
-  background:linear-gradient(160deg, rgba(201,212,107,.07), rgba(201,212,107,.02));
-  padding:clamp(38px,5vw,62px) 30px clamp(52px,6vw,76px);
-  text-align:center;
-}
-.hero-card .gsm{
-  font-family:var(--font-display);font-weight:600;
-  letter-spacing:.22em;font-size:1.1rem;color:var(--lime-soft);margin:0 0 18px;
-}
-.hero-card .logo-word{
-  font-family:var(--font-display);font-weight:700;
-  font-size:clamp(3rem,6.5vw,4.6rem);line-height:1;
-  color:var(--lime-soft);margin:0 0 20px;
-}
-.hero-card .tagline{
-  font-family:var(--font-display);font-weight:500;
-  text-transform:uppercase;letter-spacing:.03em;
-  font-size:clamp(.82rem,1.5vw,1.02rem);color:var(--on-dark-dim);margin:0;
-}
-.hero-badge{
-  position:absolute;right:18px;bottom:-26px;
-  background:var(--lime);color:var(--green-900);
-  border-radius:var(--r-md);padding:14px 22px;text-align:left;
-  box-shadow:0 12px 30px rgba(0,0,0,.22);
-}
-.hero-badge small{display:block;font-size:.74rem;opacity:.75;font-weight:500;}
-.hero-badge strong{font-size:1.02rem;font-weight:700;}
-
-/* ============================================================
-   MENU
-   ============================================================ */
-.menu{background:var(--cream);padding-block:clamp(56px,7vw,92px);}
-.menu-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:38px;}
-.menu .eyebrow{color:var(--muted);}
-.menu h2{
-  font-family:var(--font-display);font-weight:600;
-  font-size:clamp(2.4rem,5.4vw,4rem);line-height:1;margin:0;color:var(--green-900);
-}
-.menu h2 em{font-style:normal;color:var(--green-500);}
-.menu-note{color:var(--muted);font-size:1rem;margin:0 0 6px;}
-
-.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.card{
-  background:var(--cream-2);border:1px solid rgba(0,0,0,.05);
-  border-radius:var(--r-lg);padding:16px;display:flex;flex-direction:column;
-}
-.card-media{
-  border-radius:var(--r-md);background:#DFDCCF;
-  aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;
-}
-.card-media img{width:100%;height:100%;object-fit:cover;}
-.card-media svg{width:64%;height:auto;}
-.card-row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin:18px 2px 4px;}
-.card-row h3{font-family:var(--font-ui);font-weight:600;font-size:1.12rem;margin:0;color:var(--green-900);}
-.card-price{font-weight:600;color:var(--green-500);white-space:nowrap;}
-.card-desc{color:var(--muted);font-size:.9rem;margin:0 2px 18px;flex:1;}
-.btn-add{
-  display:flex;align-items:center;justify-content:space-between;width:100%;
-  background:#fff;border:1px solid var(--line);border-radius:var(--r-md);
-  padding:14px 18px;font-weight:600;color:var(--green-900);
-  transition:background .15s ease, border-color .15s ease;
-}
-.btn-add:hover{background:var(--lime-soft);border-color:var(--lime);}
-.btn-add span.plus{font-size:1.2rem;line-height:1;color:var(--muted);}
-.btn-add.added{background:var(--lime);border-color:var(--lime);}
 
 /* ============================================================
    CHECKOUT
@@ -374,84 +277,118 @@ input,select{font-family:inherit;}
 }
 .toast.show{opacity:1;transform:translate(-50%,0);}
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width:980px){
-  .hero-grid{grid-template-columns:1fr;}
-  .hero-card{order:-1;}
-  .checkout-grid{grid-template-columns:1fr;}
-  .menu-grid{grid-template-columns:repeat(2,1fr);}
-}
-@media (max-width:640px){
-  .header-inner{height:64px;}
-  .brand-word{font-size:.95rem;}
-  .menu-grid{grid-template-columns:1fr;}
-  .form-row{grid-template-columns:1fr;}
-  .order-line{flex-wrap:wrap;}
-  .order-line .sum{min-width:0;margin-left:auto;}
-  .hero-badge{right:50%;transform:translateX(50%);}
-  .amount-box{flex-direction:column;align-items:flex-start;}
-}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto;}
-  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
-}
+:root{--green-900:#043009;--green-800:#06450D;--green-700:#085610;--green-500:#2F7D46;--orange:#D26B48;--orange-d:#B8512F;--peach:#F2A987;--lime:#F1E9C6;--lime-soft:#F7F1D8;--cream:#EFEBDD;--cream-2:#F6F3E8;--paper:#FFFDF7;--on-dark:#F4F1E4;--on-dark-dim:#B9C7B6}
+:focus-visible{outline-color:var(--orange)}
+.brand img{height:34px;width:auto}
+.nav{display:flex;align-items:center;gap:clamp(14px,3vw,30px)}
+.nav>a:not(.cart-btn){color:var(--green-900);font-weight:600;text-decoration:none;font-size:.95rem}
+.nav>a:not(.cart-btn):hover{color:var(--orange-d)}
+.cart-btn{text-decoration:none}
+.btn-pay{background:var(--green-800);color:#fff}
+.btn-pay:hover{background:var(--green-700)}
+.hero{background:radial-gradient(800px 480px at 82% 45%,rgba(255,255,255,.08),transparent 62%),var(--green-800);padding-block:clamp(40px,6vw,88px)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,64px);align-items:center}
+.hero-logo{width:min(380px,72%);margin-bottom:26px}
+.hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,4.8vw,3.4rem);line-height:1.08;color:var(--on-dark);margin:0 0 34px}
+.hero h1 span{display:block}.hero h1 span:last-child{color:var(--peach)}
+.btn-start{display:inline-flex;align-items:center;gap:12px;background:var(--paper);color:var(--green-900);padding:17px 32px;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s,background .15s}
+.btn-start:hover{background:var(--lime)}.btn-start:active{transform:scale(.98)}
+.hero-art{display:grid;place-items:center}
+.hero-art img{max-height:540px;width:auto;max-width:90%;filter:drop-shadow(0 18px 22px rgba(0,0,0,.3))}
+.about{background:var(--cream);padding-block:clamp(48px,7vw,88px)}
+.about-wrap{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center}
+.fact{flex:0 1 440px;background:#F4F0DA;color:#2B4468;padding:30px 30px 22px;box-shadow:inset 0 0 0 8px #F4F0DA,inset 0 0 0 9px #2B4468}
+.fact h2{font-family:var(--font-display);font-weight:700;color:var(--green-800);font-size:clamp(1.8rem,4.2vw,2.4rem);line-height:.98;margin:0 0 16px}
+.fact p{margin:0}.fact .tag{font-size:.78rem;letter-spacing:.08em;padding:9px 0;border-top:1px solid #2B4468;border-bottom:8px solid #2B4468;margin-bottom:10px}
+.fact .serv{font-size:.85rem;padding:4px 0}.fact .dv{text-align:right;font-size:.8rem;padding:4px 0 8px;border-bottom:1px solid #2B4468}
+.fact .row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #2B4468;font-size:.85rem;letter-spacing:.06em}
+.fact .big{font-weight:700;font-size:1.08rem;color:var(--green-800);border-bottom-width:2px}
+.fact .note{font-size:.7rem;letter-spacing:.04em;padding-top:12px;line-height:1.5}
+.nerd{width:clamp(170px,26vw,260px);margin-left:-36px}
+.menu{background:var(--cream);padding-block:clamp(28px,5vw,64px) clamp(48px,7vw,88px)}
+.menu-layout{display:grid;grid-template-columns:220px 1fr;gap:clamp(20px,3vw,40px);align-items:start}
+.cats{position:sticky;top:96px;background:var(--paper);border-radius:var(--r-lg);padding:10px;display:grid;gap:4px}
+.cat-btn{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;font-weight:600;color:var(--green-900);text-align:left;transition:background .15s}
+.cat-btn img{width:36px;height:36px;object-fit:contain}
+.cat-btn:hover{background:var(--cream-2)}.cat-btn.on{background:var(--green-800);color:#fff}
+.grp{margin-bottom:40px}.grp-head{display:flex;align-items:center;gap:12px}
+.grp-head img{width:46px;height:46px;object-fit:contain}
+.grp h2{font-family:var(--font-display);font-weight:600;font-size:clamp(1.8rem,4vw,2.6rem);margin:0;color:var(--green-900)}
+.cat-desc{color:var(--muted);margin:6px 0 18px}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px}
+.pcard{display:block;width:100%;background:var(--paper);border:1px solid rgba(0,0,0,.05);border-radius:var(--r-lg);padding:12px 12px 16px;text-align:center;font:inherit;transition:transform .15s,box-shadow .15s}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.1)}
+.pmedia,.dimg{border-radius:var(--r-md);aspect-ratio:1;display:grid;place-items:center;overflow:hidden}
+.pmedia{margin-bottom:12px}.pmedia img,.dimg img{width:100%;height:100%;object-fit:cover}
+.pmedia svg{width:62%;height:auto}.dimg svg{width:58%;height:auto}
+.pcard strong{font-weight:600;color:var(--green-900)}
+.dbox{background:var(--paper);border-radius:var(--r-xl);width:min(980px,100%);padding:clamp(20px,3vw,34px);margin:auto;position:relative;animation:pop .22s ease}
+.dclose{position:absolute;top:14px;right:14px;z-index:2}
+.dgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,3vw,40px)}
+.ing{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.ing li{background:#EFF3E4;border-radius:999px;padding:6px 14px;font-size:.88rem;color:var(--green-900)}
+.dleft .optt{margin-top:18px}
+.dcat{margin:0 0 2px;font-size:.85rem;font-weight:600;color:var(--orange-d)}
+.dright h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.9rem,4vw,2.5rem);line-height:1.05;margin:0 0 6px;color:var(--green-900)}
+.dprice{font-weight:600;color:var(--green-500);margin:0 0 8px;font-size:1.15rem}
+.ddesc{color:var(--muted);font-size:.92rem;line-height:1.6;margin:0 0 16px}
+.nf{border:2px solid var(--green-900);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:20px}
+.nf h4{margin:0;font-family:var(--font-display);font-size:1.2rem;color:var(--green-900)}
+.nf small{color:var(--muted);font-size:.78rem}
+.nf-r{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--line);font-size:.92rem}
+.nf-r:first-child{margin-top:8px}
+.pers{font-family:var(--font-display);font-size:1.25rem;margin:0 0 2px;color:var(--green-900)}
+.optt{font-weight:600;color:var(--green-900);margin:12px 0 8px;font-size:.95rem}.optt small{font-weight:400;color:var(--muted)}
+.seg,.adds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.adds{padding-top:10px}
+.seg button,.adds button{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:12px 8px;font-weight:500;font-size:.92rem;color:var(--green-900);transition:border-color .15s,background .15s}
+.seg button.on,.adds button.on{border-color:var(--green-800);background:#EAF2E4;font-weight:600}
+.adds button{position:relative}.adds small{display:block;color:var(--muted);font-size:.76rem;font-weight:400}
+.adds .rec{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:.66rem;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.dact{display:grid;grid-template-columns:1fr 2fr;gap:10px;margin-top:22px}
+.btn-cancel{border:1.5px solid var(--line);border-radius:var(--r-md);padding:17px;font-weight:600;color:var(--muted);background:#fff}
+.btn-cancel:hover{background:#F3F1E8}
+.cont{display:block;text-align:center;margin-top:12px;color:var(--muted);font-size:.9rem;text-decoration:underline;text-underline-offset:3px}
+.cont:hover{color:var(--green-500)}
+.order-line .name small{display:block}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-logo{margin-inline:auto}.hero-art{order:-1}.hero-art img{max-height:300px}.checkout-grid,.menu-layout,.dgrid{grid-template-columns:1fr}.cats{position:static;display:flex;overflow-x:auto;padding:8px}.cat-btn{flex:none;padding:8px 14px}.cat-btn img{width:28px;height:28px}.dimg{aspect-ratio:16/10}}
+@media(max-width:640px){.header-inner{height:64px}.brand img{height:28px}.nav{gap:14px}.form-row{grid-template-columns:1fr}.order-line{flex-wrap:wrap}.order-line .sum{min-width:0;margin-left:auto}.amount-box{flex-direction:column;align-items:flex-start}.nerd{margin-left:0}.seg,.adds{gap:6px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="wrap header-inner">
-    <a href="#hero" class="brand">
-      <span class="brand-mark">G</span>
-      <span class="brand-word">GAINLY</span>
-    </a>
-    <button class="cart-btn" id="cartBtn" aria-label="Lihat pesanan">
-      Cart <span class="cart-count" id="cartCount" aria-live="polite">0</span>
-    </button>
-  </div>
-</header>
-
-<section class="hero" id="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow">Smoothies · Pickup only</p>
-      <h1>Good taste.<span class="gains">Good gains.</span></h1>
-      <p>Simple, creamy smoothies made for your day. Pick your flavor, choose a pickup time, and pay online with QRIS.</p>
-      <a href="#menu" class="btn-lime">Order a smoothie <span aria-hidden="true">↓</span></a>
-    </div>
-    <div class="hero-card">
-      <p class="gsm">GSM</p>
-      <p class="logo-word">Gainly</p>
-      <p class="tagline">"Your goal. Your taste. Your smoothie."</p>
-      <div class="hero-badge">
-        <small>100% pickup</small>
-        <strong>QRIS ready</strong>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="menu" id="menu">
-  <div class="wrap">
-    <div class="menu-head">
-      <div>
-        <p class="eyebrow">The menu</p>
-        <h2>Pick your <em>favorite.</em></h2>
-      </div>
-      <p class="menu-note">Three flavors. No overthinking.</p>
-    </div>
-    <div class="menu-grid" id="menuGrid"></div>
-  </div>
-</section>
-
+<header class="site-header"><div class="wrap header-inner">
+<a href="#welcome" class="brand"><img src="logo-green.webp" alt="Giny’s"></a>
+<nav class="nav"><a href="#menu">Menu</a><a href="#about">About</a><a href="#cart" class="cart-btn" id="cartBtn" aria-label="Lihat pesanan">Cart <span class="cart-count" id="cartCount" aria-live="polite">0</span></a></nav>
+</div></header>
+<div class="page" id="p-welcome">
+<section class="hero"><div class="wrap hero-grid">
+<div><img class="hero-logo" src="logo-white.webp" alt="Giny’s">
+<h1><span>Your Goal.</span><span>Your Taste.</span><span>Your smoothie.</span></h1>
+<a href="#menu" class="btn-start">Start Order <span aria-hidden="true">→</span></a></div>
+<div class="hero-art"><img src="giny-balance.webp" alt="Giny, maskot Giny’s"></div>
+</div></section>
+<section class="about" id="about"><div class="wrap about-wrap">
+<div class="fact"><h2>Giny’s<br>Nutrition Facts</h2>
+<p class="tag">Right amount of fuel for your day</p>
+<p class="serv">Serving size: <b>330 ml</b></p><p class="dv">% Daily value**</p>
+<div class="row big"><span>Strength</span><span>1000%</span></div>
+<div class="row"><span>Muscle</span><span>200%</span></div>
+<div class="row"><span>Bulk</span><span>200%</span></div>
+<div class="row"><span>Love</span><span>Overdosed</span></div>
+<div class="row"><span>Protein</span><span>1000%</span></div>
+<div class="row"><span>Calories</span><span>100%</span></div>
+<p class="note">*Daily values may be higher or lower depending on how much you’re gaining today</p></div>
+<img class="nerd" src="giny-nerd.webp" alt="Giny berkacamata sedang melambai">
+</div></section>
+</div>
+<div class="page" id="p-menu" hidden><section class="menu"><div class="wrap menu-layout"><nav class="cats" id="cats" aria-label="Kategori menu"></nav><div id="menuBody"></div></div></section></div>
+<div class="page" id="p-cart" hidden>
 <section class="checkout" id="checkout">
   <div class="wrap checkout-grid">
     <div>
       <p class="eyebrow">Checkout</p>
       <h2>Ready when you are.</h2>
-      <p class="checkout-intro">Gainly is pickup only. We'll prepare your smoothies for the time you choose.</p>
+      <p class="checkout-intro">Giny’s is pickup only. We'll prepare your smoothies for the time you choose.</p>
       <ul class="checkout-facts">
         <li><span aria-hidden="true">📍</span><span>Ambil di <b id="factLocation">—</b></span></li>
         <li><span aria-hidden="true">⏱</span><span>Datang <b>±5 menit</b> sebelum jam pickup</span></li>
@@ -520,18 +457,18 @@ input,select{font-family:inherit;}
 
         <button class="btn-pay" id="payBtn">Continue to payment <span aria-hidden="true">→</span></button>
         <p class="fine">By placing the order, you agree that this is a pickup-only order.</p>
+        <a href="#menu" class="cont">Continue shopping</a>
       </div>
     </div>
   </div>
 </section>
-
+</div>
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <span>© <span id="year"></span> Gainly — Smoothies. Pickup only.</span>
+    <span>© <span id="year"></span> Giny’s — Smoothies. Pickup only.</span>
     <span>Butuh bantuan? <a id="footWa" href="#">Chat WhatsApp</a></span>
   </div>
 </footer>
-
 <!-- ============ MODAL ============ -->
 <div class="modal" id="payModal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
   <div class="modal-box">
@@ -591,130 +528,107 @@ input,select{font-family:inherit;}
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+
+<div class="modal" id="detail" role="dialog" aria-modal="true" aria-labelledby="dName">
+<div class="dbox"><button class="btn-x dclose" id="dClose" aria-label="Tutup">✕</button>
+<div class="dgrid">
+<div class="dleft"><div class="dimg" id="dImg"></div><p class="optt">Ingredients</p><ul class="ing" id="dIng"></ul></div>
+<div class="dright"><p class="dcat" id="dCat"></p><h3 id="dName"></h3><p class="dprice" id="dPrice"></p><p class="ddesc" id="dDesc"></p>
+<div class="nf"><h4>Nutrition Facts</h4><small>Per serving · 330 ml · belum termasuk add-on</small><div id="dNf"></div></div>
+<h4 class="pers">Personalize your smoothie!</h4>
+<p class="optt">Ice level</p><div class="seg" id="dIce"></div>
+<p class="optt">Add-ons <small>+Rp 1.800 each · ★ = recommended</small></p><div class="adds" id="dAdds"></div>
+<div class="dact"><button class="btn-cancel" id="dCancel">Cancel</button><button class="btn-pay" id="dAdd">Add to Cart</button></div>
+</div></div></div></div>
+
 <script>
-/* ============================================================
-   KONFIGURASI — ubah bagian ini saja
-   ============================================================ */
-const CONFIG = {
-  /* Nomor WhatsApp penerima order. Format internasional, tanpa + dan tanpa 0.
-     Contoh: 0812-3456-7890  ->  "6281234567890"                              */
-  whatsapp: "6287784835252",
-
-  /* URL Google Apps Script untuk mencatat order otomatis ke Google Sheet.
-     Lihat file apps-script.gs + CARA-PAKAI.md. Kosongkan kalau belum dipakai. */
-  logUrl: "https://script.google.com/macros/s/AKfycbzuxw97FKc8yvTWvRNqh2sI5jNi21bitraV53hta7qN3_3yTUR8RcbV5lnIzdEemIQA/exec",
-
-  /* Gambar QRIS milikmu. Taruh di folder yang sama dengan index.html.        */
-  qrisImage: "qris.png",
-
-  merchantName: "GAINLY",
-  pickupLocation: "Gainly Pickup Point — Campus",
-
-  timeSlots: [
-    "10:00–10:30","10:30–11:00","11:00–11:30","11:30–12:00",
-    "13:00–13:30","13:30–14:00","14:00–14:30","14:30–15:00",
-    "15:00–15:30","15:30–16:00","16:00–16:30","16:30–17:00"
+const CONFIG={
+  whatsapp:"6287784835252",
+  logUrl:"https://script.google.com/macros/s/AKfycbzuxw97FKc8yvTWvRNqh2sI5jNi21bitraV53hta7qN3_3yTUR8RcbV5lnIzdEemIQA/exec",
+  qrisImage:"qris.png",
+  merchantName:"Giny’s",
+  pickupLocation:"Giny’s Pickup Point — Campus",
+  timeSlots:["10:00–10:30","10:30–11:00","11:00–11:30","11:30–12:00","13:00–13:30","13:30–14:00","14:00–14:30","14:30–15:00","15:00–15:30","15:30–16:00","16:00–16:30","16:30–17:00"],
+  maxDaysAhead:14,
+  addonPrice:1800,
+  addons:[["oat","Oat"],["protein","Protein"],["cocoa","Cocoa"]],
+  iceLevels:["Regular ice","Less ice","No ice"],
+  cats:[
+    {id:"gain",name:"Gain",img:"giny-gain.webp",desc:"Creamy and filling, for when you’re building up."},
+    {id:"balance",name:"Balance",img:"giny-balance.webp",desc:"Light, fresh, and easy to drink every day."},
+    {id:"muscle",name:"Muscle",img:"giny-muscle.webp",desc:"High in protein to fuel your training."}
   ],
-
-  maxDaysAhead: 14,
-
-  menu: [
-    { id:"banana-choco", name:"Banana Chocolate",    price:18000, desc:"Banana + chocolate goodness", image:"", tint:"#E6DCC6" },
-    { id:"pb-banana",    name:"Peanut Butter Banana", price:20000, desc:"Creamy, nutty & filling",    image:"", tint:"#EDE4CF" },
-    { id:"strawberry",   name:"Strawberry",           price:18000, desc:"Fresh, fruity & smooth",     image:"", tint:"#E8C3C3" }
+  /* n = [calories kcal, sodium mg, carbs g, added sugar g, protein g]; rec = add-on yang direkomendasikan.
+     image: isi nama file foto produk (mis. "marienanana.webp") kalau sudah ada; kosong = ilustrasi gelas. */
+  menu:[
+    {id:"marienanana",name:"Marienanana",cat:"gain",price:42000,tint:"#E2C170",image:"",desc:"A comforting, nostalgic sweet treat with a rich, buttery biscuit flavor and smooth banana creaminess",ing:["Banana","Milk","Oats","Biscuit"],n:[215,65,29,1.8,17.5],rec:["oat"]},
+    {id:"avo-loco",name:"Avo Loco",cat:"gain",price:42000,tint:"#9DBB5A",image:"",desc:"A decadent, ultra smooth avocado indulgence balanced with a fun chocolate cookie crunch",ing:["Avocado","Milk","Chocolate cookie"],n:[247,110,25,4.8,10.5],rec:["protein","cocoa"]},
+    {id:"berry-paradise",name:"Berry Paradise",cat:"balance",price:38000,tint:"#EE8FA0",image:"",desc:"A bright, sweet strawberry forward sip that is wonderfully refreshing with a smooth, milky finish",ing:["Strawberry","Milk"],n:[205,115,21,0,18],rec:["cocoa","oat"]},
+    {id:"berry-rush",name:"Berry Rush",cat:"balance",price:38000,tint:"#B8557F",image:"",desc:"A vibrant and zesty blend of mixed berries delivering a deliciously sour, punchy, and ultra fresh kick",ing:["Mixed berries","Milk"],n:[192,68,17.5,0,17.5],rec:["oat"]},
+    {id:"choconana",name:"Choconana",cat:"muscle",price:38000,tint:"#8B5A3C",image:"",desc:"A deliciously rich chocolate banana pairing that hits the spot with a deep, velvety cocoa taste",ing:["Banana","Chocolate","Milk"],n:[258,55,31.5,0,21.5],rec:["protein","oat"]},
+    {id:"onanut",name:"O’Nanut!",cat:"muscle",price:38000,tint:"#D3A35E",image:"",desc:"A thick, nutty, and satisfying masterpiece featuring a decadent balance of rich peanut butter and sweet banana",ing:["Peanut butter","Banana","Milk"],n:[295,75,26,1.5,25],rec:["cocoa","oat"]}
   ]
 };
+const NF=[["Calories","kcal"],["Sodium","mg"],["Total Carbohydrate","g"],["Added Sugar","g"],["Protein","g"]];
+const $=(s,el=document)=>el.querySelector(s);
+const rupiah=n=>"Rp "+n.toLocaleString("id-ID");
+const item=id=>CONFIG.menu.find(m=>m.id===id);
+const cart=[];let cur=null,activeCat="all",toastTimer;
 
-/* ============================================================
-   STATE & HELPERS
-   ============================================================ */
-const cart = new Map();
-const $ = (s, el=document) => el.querySelector(s);
-const rupiah = n => "Rp " + n.toLocaleString("id-ID");
-const itemById = id => CONFIG.menu.find(m => m.id === id);
+function cupSVG(t){return '<svg viewBox="0 0 160 200" aria-hidden="true"><ellipse cx="80" cy="188" rx="46" ry="7" fill="rgba(0,0,0,.08)"/><path d="M34 52h92l-10 126a14 14 0 0 1-14 13H58a14 14 0 0 1-14-13z" fill="'+t+'"/><path d="M34 52h92l-3 34H37z" fill="rgba(255,255,255,.4)"/><rect x="28" y="38" width="104" height="18" rx="9" fill="rgba(255,255,255,.85)"/><path d="M88 38l10-30h10" stroke="rgba(255,255,255,.9)" stroke-width="9" fill="none" stroke-linecap="round"/><text x="80" y="140" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" font-size="25" fill="rgba(255,255,255,.9)">Giny’s</text></svg>'}
+const media=m=>m.image?`<img src="${m.image}" alt="${m.name}" loading="lazy">`:cupSVG(m.tint);
+const soft=m=>`color-mix(in srgb,${m.tint} 28%,#fff)`;
+function showToast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
 
-function cupSVG(tint){
-  return '<svg viewBox="0 0 160 200" aria-hidden="true">' +
-    '<ellipse cx="80" cy="188" rx="46" ry="7" fill="rgba(0,0,0,.07)"/>' +
-    '<path d="M34 52 h92 l-10 126 a14 14 0 0 1 -14 13 h-44 a14 14 0 0 1 -14 -13 z" fill="' + tint + '"/>' +
-    '<path d="M34 52 h92 l-3 34 h-86 z" fill="rgba(255,255,255,.45)"/>' +
-    '<rect x="28" y="38" width="104" height="18" rx="9" fill="rgba(255,255,255,.75)"/>' +
-    '<path d="M88 38 l10 -30 h10" stroke="rgba(255,255,255,.85)" stroke-width="9" fill="none" stroke-linecap="round"/>' +
-    '<text x="80" y="140" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="26" fill="rgba(255,255,255,.7)">GAINLY</text>' +
-    '</svg>';
-}
-
-/* ============================================================
-   MENU
-   ============================================================ */
+/* ---------- menu ---------- */
 function renderMenu(){
-  $("#menuGrid").innerHTML = CONFIG.menu.map(m => `
-    <article class="card">
-      <div class="card-media" style="background:${m.tint}">
-        ${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : cupSVG(m.tint)}
-      </div>
-      <div class="card-row">
-        <h3>${m.name}</h3>
-        <span class="card-price">${rupiah(m.price)}</span>
-      </div>
-      <p class="card-desc">${m.desc}</p>
-      <button class="btn-add" data-add="${m.id}">
-        Add to order <span class="plus" aria-hidden="true">+</span>
-      </button>
-    </article>`).join("");
+  $("#cats").innerHTML=[{id:"all",name:"All",img:"giny-head.webp"},...CONFIG.cats].map(c=>`<button class="cat-btn${c.id===activeCat?" on":""}" data-cat="${c.id}"><img src="${c.img}" alt="">${c.name}</button>`).join("");
+  $("#menuBody").innerHTML=CONFIG.cats.filter(c=>activeCat==="all"||c.id===activeCat).map(c=>`<section class="grp"><div class="grp-head"><img src="${c.img}" alt=""><h2>${c.name}</h2></div><p class="cat-desc">${c.desc}</p><div class="menu-grid">${CONFIG.menu.filter(m=>m.cat===c.id).map(m=>`<button class="pcard" data-open="${m.id}"><div class="pmedia" style="background:${soft(m)}">${media(m)}</div><strong>${m.name}</strong></button>`).join("")}</div></section>`).join("");
 }
 
-/* ============================================================
-   CART
-   ============================================================ */
-function total(){
-  let t = 0;
-  cart.forEach((q, id) => t += itemById(id).price * q);
-  return t;
+/* ---------- detail produk ---------- */
+const curPrice=()=>cur.m.price+cur.adds.size*CONFIG.addonPrice;
+function paintDetail(){
+  $("#dIce").innerHTML=CONFIG.iceLevels.map((t,i)=>`<button class="${i===cur.ice?"on":""}" data-ice="${i}" aria-pressed="${i===cur.ice}">${t}</button>`).join("");
+  $("#dAdds").innerHTML=CONFIG.addons.map(([k,t])=>`<button class="${cur.adds.has(k)?"on":""}" data-addon="${k}" aria-pressed="${cur.adds.has(k)}">${cur.m.rec.includes(k)?'<span class="rec">★ Recommended</span>':""}${t}<small>+${rupiah(CONFIG.addonPrice)}</small></button>`).join("");
+  $("#dAdd").textContent="Add to Cart · "+rupiah(curPrice());
 }
+function openDetail(id){
+  const m=item(id);cur={m,ice:0,adds:new Set()};
+  $("#dCat").textContent=CONFIG.cats.find(c=>c.id===m.cat).name;
+  $("#dName").textContent=m.name;$("#dPrice").textContent=rupiah(m.price);$("#dDesc").textContent=m.desc;
+  $("#dImg").style.background=soft(m);$("#dImg").innerHTML=media(m);
+  $("#dIng").innerHTML=m.ing.map(i=>`<li>${i}</li>`).join("");
+  $("#dNf").innerHTML=NF.map(([l,u],i)=>`<div class="nf-r"><span>${l}</span><b>${m.n[i]===0?"":"± "}${m.n[i]} ${u}</b></div>`).join("");
+  paintDetail();$("#detail").classList.add("open");document.body.style.overflow="hidden";$("#dClose").focus();
+}
+function closeDetail(){$("#detail").classList.remove("open");document.body.style.overflow=""}
 
+/* ---------- keranjang ---------- */
+const keyOf=l=>l.id+"|"+l.ice+"|"+l.adds.join(",");
+const unit=l=>item(l.id).price+l.adds.length*CONFIG.addonPrice;
+const opts=l=>[CONFIG.iceLevels[l.ice],...l.adds.map(a=>"+"+CONFIG.addons.find(x=>x[0]===a)[1])].join(" · ");
+const total=()=>cart.reduce((t,l)=>t+unit(l)*l.qty,0);
+function itemLines(){return cart.map(l=>l.qty+"× "+item(l.id).name+" · "+opts(l)+" — "+rupiah(unit(l)*l.qty))}
 function renderCart(){
-  const box = $("#orderItems");
-  if (cart.size === 0){
-    box.innerHTML = '<p class="order-empty">Keranjang masih kosong. Pilih smoothie di menu dulu ya.</p>';
-  } else {
-    box.innerHTML = [...cart].map(([id, qty]) => {
-      const m = itemById(id);
-      return `<div class="order-line">
-          <div class="name"><strong>${m.name}</strong><small>${rupiah(m.price)} each</small></div>
-          <div class="qty">
-            <button data-dec="${id}" aria-label="Kurangi ${m.name}">−</button>
-            <output>${qty}</output>
-            <button data-inc="${id}" aria-label="Tambah ${m.name}">+</button>
-          </div>
-          <div class="sum">${rupiah(m.price * qty)}</div>
-        </div>`;
-    }).join("");
-  }
-  $("#cartCount").textContent = [...cart.values()].reduce((a,b) => a+b, 0);
-  $("#orderTotal").textContent = rupiah(total());
-  $("#payBtn").disabled = cart.size === 0;
+  $("#orderItems").innerHTML=cart.length?cart.map((l,i)=>{const m=item(l.id);return `<div class="order-line"><div class="name"><strong>${m.name}</strong><small>${opts(l)}</small><small>${rupiah(unit(l))} each</small></div><div class="qty"><button data-dec="${i}" aria-label="Kurangi ${m.name}">−</button><output>${l.qty}</output><button data-inc="${i}" aria-label="Tambah ${m.name}">+</button></div><div class="sum">${rupiah(unit(l)*l.qty)}</div></div>`}).join(""):'<p class="order-empty">Keranjang masih kosong. Pilih smoothie di menu dulu ya.</p>';
+  $("#cartCount").textContent=cart.reduce((a,l)=>a+l.qty,0);
+  $("#orderTotal").textContent=rupiah(total());
+  $("#payBtn").disabled=!cart.length;
+}
+function addLine(){
+  const l={id:cur.m.id,ice:cur.ice,adds:[...cur.adds].sort(),qty:1},ex=cart.find(x=>keyOf(x)===keyOf(l));
+  ex?ex.qty++:cart.push(l);
+  closeDetail();renderCart();
+  const cb=$("#cartBtn");cb.classList.add("bump");setTimeout(()=>cb.classList.remove("bump"),360);
+  location.hash="#cart";
 }
 
-function addToCart(id){
-  cart.set(id, (cart.get(id) || 0) + 1);
-  renderCart();
-  const btn = $(`[data-add="${id}"]`);
-  btn.classList.add("added");
-  setTimeout(() => btn.classList.remove("added"), 450);
-  const cb = $("#cartBtn");
-  cb.classList.add("bump");
-  setTimeout(() => cb.classList.remove("bump"), 360);
-  showToast(itemById(id).name + " ditambahkan");
-}
-
-let toastTimer;
-function showToast(msg){
-  const t = $("#toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+/* ---------- halaman ---------- */
+function route(){
+  const h=location.hash.slice(1),pg=h==="menu"?"menu":h==="cart"?"cart":"welcome";
+  ["welcome","menu","cart"].forEach(p=>$("#p-"+p).hidden=p!==pg);
+  h==="about"?$("#about").scrollIntoView({behavior:"smooth"}):window.scrollTo(0,0);
 }
 
 /* ============================================================
@@ -790,12 +704,6 @@ function prettyDate(iso){
     { weekday:"long", day:"numeric", month:"long", year:"numeric" });
 }
 
-function itemLines(){
-  return [...cart].map(([id, qty]) => {
-    const m = itemById(id);
-    return qty + "× " + m.name + " — " + rupiah(m.price * qty);
-  });
-}
 
 function buildWaText(o, withProof){
   const tail = withProof
@@ -904,55 +812,34 @@ function closeModal(){
   $("#payBtn").focus();
 }
 
-/* ============================================================
-   EVENTS
-   ============================================================ */
-document.addEventListener("click", e => {
-  const add = e.target.closest("[data-add]");
-  if (add) return addToCart(add.dataset.add);
 
-  const inc = e.target.closest("[data-inc]");
-  if (inc){ cart.set(inc.dataset.inc, cart.get(inc.dataset.inc) + 1); return renderCart(); }
 
-  const dec = e.target.closest("[data-dec]");
-  if (dec){
-    const id = dec.dataset.dec, q = cart.get(id) - 1;
-    q <= 0 ? cart.delete(id) : cart.set(id, q);
-    return renderCart();
-  }
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-cat],[data-open],[data-ice],[data-addon],[data-inc],[data-dec]");if(!t)return;
+  const d=t.dataset;
+  if(d.cat){activeCat=d.cat;renderMenu()}
+  else if(d.open)openDetail(d.open);
+  else if(d.ice!==undefined){cur.ice=+d.ice;paintDetail()}
+  else if(d.addon){cur.adds.has(d.addon)?cur.adds.delete(d.addon):cur.adds.add(d.addon);paintDetail()}
+  else if(d.inc!==undefined){cart[+d.inc].qty++;renderCart()}
+  else if(d.dec!==undefined){const i=+d.dec;if(--cart[i].qty<=0)cart.splice(i,1);renderCart()}
 });
+$("#dAdd").addEventListener("click",addLine);
+$("#dCancel").addEventListener("click",closeDetail);
+$("#dClose").addEventListener("click",closeDetail);
+$("#detail").addEventListener("click",e=>{if(e.target.id==="detail")closeDetail()});
+$("#clearBtn").addEventListener("click",()=>{if(!cart.length)return;cart.length=0;renderCart();showToast("Pesanan dikosongkan")});
+$("#payBtn").addEventListener("click",openModal);
+$("#closeModal").addEventListener("click",closeModal);
+$("#waSendBtn").addEventListener("click",()=>setTimeout(goStep2,400));
+$("#payModal").addEventListener("click",e=>{if(e.target.id==="payModal")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if($("#payModal").classList.contains("open"))closeModal();else if($("#detail").classList.contains("open"))closeDetail()});
+$("#copyAmount").addEventListener("click",async()=>{if(!currentOrder)return;try{await navigator.clipboard.writeText(String(currentOrder.total));showToast("Nominal disalin: "+currentOrder.total)}catch(_){showToast("Nominal: "+currentOrder.total)}});
+["name","phone","email","date","time"].forEach(id=>$("#"+id).addEventListener("input",()=>markInvalid("f-"+id,false)));
+addEventListener("hashchange",route);
+renderMenu();setupForm();renderCart();route();
 
-$("#cartBtn").addEventListener("click", () =>
-  document.getElementById("checkout").scrollIntoView({ behavior:"smooth" }));
-
-$("#clearBtn").addEventListener("click", () => {
-  if (cart.size === 0) return;
-  cart.clear(); renderCart(); showToast("Pesanan dikosongkan");
-});
-
-$("#payBtn").addEventListener("click", openModal);
-$("#closeModal").addEventListener("click", closeModal);
-$("#waSendBtn").addEventListener("click", () => setTimeout(goStep2, 400));
-
-$("#payModal").addEventListener("click", e => { if (e.target.id === "payModal") closeModal(); });
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape" && $("#payModal").classList.contains("open")) closeModal();
-});
-
-$("#copyAmount").addEventListener("click", async () => {
-  if (!currentOrder) return;
-  try{
-    await navigator.clipboard.writeText(String(currentOrder.total));
-    showToast("Nominal disalin: " + currentOrder.total);
-  }catch(_){ showToast("Nominal: " + currentOrder.total); }
-});
-
-["name","phone","email","date","time"].forEach(id =>
-  $("#" + id).addEventListener("input", () => markInvalid("f-" + id, false)));
-
-renderMenu();
-setupForm();
-renderCart();
 </script>
 </body>
 </html>
