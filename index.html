@@ -353,6 +353,14 @@ input,select{font-family:inherit;}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-logo{margin-inline:auto}.hero-art{order:-1}.hero-art img{max-height:300px}.checkout-grid,.menu-layout,.dgrid{grid-template-columns:1fr}.cats{position:static;display:flex;overflow-x:auto;padding:8px}.cat-btn{flex:none;padding:8px 14px}.cat-btn img{width:28px;height:28px}.dimg{aspect-ratio:16/10}}
 @media(max-width:640px){.header-inner{height:64px}.brand img{height:28px}.nav{gap:14px}.form-row{grid-template-columns:1fr}.order-line{flex-wrap:wrap}.order-line .sum{min-width:0;margin-left:auto}.amount-box{flex-direction:column;align-items:flex-start}.nerd{margin-left:0}.seg,.adds{gap:6px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.seg button,.adds button{transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+.seg button:hover,.adds button:hover{transform:translateY(-1px)}
+.seg button.on,.adds button.on{background:#fff;border-color:var(--green-900);transform:translate(-1px,-3px);box-shadow:3px 5px 0 var(--green-900)}
+.seg button:active,.adds button:active{transform:translate(0,0);box-shadow:0 0 0 var(--green-900)}
+.nf-r em{font-style:normal;color:var(--orange-d);font-size:.78rem;margin-left:6px}
+@media(max-width:900px){.dimg{aspect-ratio:1;max-width:400px;margin-inline:auto}}
+@media(max-width:640px){.dact{grid-template-columns:1fr}.dact .btn-pay{order:-1}.seg button{padding:12px 4px;font-size:.86rem}}
+@media(max-width:480px){.adds .rt{display:none}}
 </style>
 </head>
 <body>
@@ -534,7 +542,7 @@ input,select{font-family:inherit;}
 <div class="dgrid">
 <div class="dleft"><div class="dimg" id="dImg"></div><p class="optt">Ingredients</p><ul class="ing" id="dIng"></ul></div>
 <div class="dright"><p class="dcat" id="dCat"></p><h3 id="dName"></h3><p class="dprice" id="dPrice"></p><p class="ddesc" id="dDesc"></p>
-<div class="nf"><h4>Nutrition Facts</h4><small>Per serving · 330 ml · belum termasuk add-on</small><div id="dNf"></div></div>
+<div class="nf"><h4>Nutrition Facts</h4><small>Per serving · 330 ml</small><div id="dNf"></div></div>
 <h4 class="pers">Personalize your smoothie!</h4>
 <p class="optt">Ice level</p><div class="seg" id="dIce"></div>
 <p class="optt">Add-ons <small>+Rp 1.800 each · ★ = recommended</small></p><div class="adds" id="dAdds"></div>
@@ -552,6 +560,8 @@ const CONFIG={
   maxDaysAhead:14,
   addonPrice:1800,
   addons:[["oat","Oat"],["protein","Protein"],["cocoa","Cocoa"]],
+  /* tambahan nutrisi per add-on: [kalori, sodium, karbo, gula tambahan, protein] */
+  addonNf:{oat:[20,0,0,0,0],protein:[0,0,.5,0,4],cocoa:[10,0,0,.5,0]},
   iceLevels:["Regular ice","Less ice","No ice"],
   cats:[
     {id:"gain",name:"Gain",img:"giny-gain.webp",desc:"Creamy and filling, for when you’re building up."},
@@ -561,12 +571,12 @@ const CONFIG={
   /* n = [calories kcal, sodium mg, carbs g, added sugar g, protein g]; rec = add-on yang direkomendasikan.
      image: isi nama file foto produk (mis. "marienanana.webp") kalau sudah ada; kosong = ilustrasi gelas. */
   menu:[
-    {id:"marienanana",name:"Marienanana",cat:"gain",price:42000,tint:"#E2C170",image:"",desc:"A comforting, nostalgic sweet treat with a rich, buttery biscuit flavor and smooth banana creaminess",ing:["Banana","Milk","Oats","Biscuit"],n:[215,65,29,1.8,17.5],rec:["oat"]},
-    {id:"avo-loco",name:"Avo Loco",cat:"gain",price:42000,tint:"#9DBB5A",image:"",desc:"A decadent, ultra smooth avocado indulgence balanced with a fun chocolate cookie crunch",ing:["Avocado","Milk","Chocolate cookie"],n:[247,110,25,4.8,10.5],rec:["protein","cocoa"]},
-    {id:"berry-paradise",name:"Berry Paradise",cat:"balance",price:38000,tint:"#EE8FA0",image:"",desc:"A bright, sweet strawberry forward sip that is wonderfully refreshing with a smooth, milky finish",ing:["Strawberry","Milk"],n:[205,115,21,0,18],rec:["cocoa","oat"]},
-    {id:"berry-rush",name:"Berry Rush",cat:"balance",price:38000,tint:"#B8557F",image:"",desc:"A vibrant and zesty blend of mixed berries delivering a deliciously sour, punchy, and ultra fresh kick",ing:["Mixed berries","Milk"],n:[192,68,17.5,0,17.5],rec:["oat"]},
-    {id:"choconana",name:"Choconana",cat:"muscle",price:38000,tint:"#8B5A3C",image:"",desc:"A deliciously rich chocolate banana pairing that hits the spot with a deep, velvety cocoa taste",ing:["Banana","Chocolate","Milk"],n:[258,55,31.5,0,21.5],rec:["protein","oat"]},
-    {id:"onanut",name:"O’Nanut!",cat:"muscle",price:38000,tint:"#D3A35E",image:"",desc:"A thick, nutty, and satisfying masterpiece featuring a decadent balance of rich peanut butter and sweet banana",ing:["Peanut butter","Banana","Milk"],n:[295,75,26,1.5,25],rec:["cocoa","oat"]}
+    {id:"marienanana",name:"Marienanana",cat:"gain",price:42000,tint:"#E2C170",image:"marienanana.webp",desc:"A comforting, nostalgic sweet treat with a rich, buttery biscuit flavor and smooth banana creaminess",ing:["Banana","Milk","Oats","Biscuit"],n:[215,65,29,1.8,17.5],rec:["oat"]},
+    {id:"avo-loco",name:"Avo Loco",cat:"gain",price:42000,tint:"#9DBB5A",image:"avo-loco.webp",desc:"A decadent, ultra smooth avocado indulgence balanced with a fun chocolate cookie crunch",ing:["Avocado","Milk","Chocolate cookie"],n:[247,110,25,4.8,10.5],rec:["protein","cocoa"]},
+    {id:"berry-paradise",name:"Berry Paradise",cat:"balance",price:38000,tint:"#EE8FA0",image:"berry-paradise.webp",desc:"A bright, sweet strawberry forward sip that is wonderfully refreshing with a smooth, milky finish",ing:["Strawberry","Milk"],n:[205,115,21,0,18],rec:["cocoa","oat"]},
+    {id:"berry-rush",name:"Berry Rush",cat:"balance",price:38000,tint:"#B8557F",image:"berry-rush.webp",desc:"A vibrant and zesty blend of mixed berries delivering a deliciously sour, punchy, and ultra fresh kick",ing:["Mixed berries","Milk"],n:[192,68,17.5,0,17.5],rec:["oat"]},
+    {id:"choconana",name:"Choconana",cat:"muscle",price:38000,tint:"#8B5A3C",image:"choconana.webp",desc:"A deliciously rich chocolate banana pairing that hits the spot with a deep, velvety cocoa taste",ing:["Banana","Chocolate","Milk"],n:[258,55,31.5,0,21.5],rec:["protein","oat"]},
+    {id:"onanut",name:"O’Nanut!",cat:"muscle",price:38000,tint:"#D3A35E",image:"onanut.webp",desc:"A thick, nutty, and satisfying masterpiece featuring a decadent balance of rich peanut butter and sweet banana",ing:["Peanut butter","Banana","Milk"],n:[295,75,26,1.5,25],rec:["cocoa","oat"]}
   ]
 };
 const NF=[["Calories","kcal"],["Sodium","mg"],["Total Carbohydrate","g"],["Added Sugar","g"],["Protein","g"]];
@@ -588,9 +598,14 @@ function renderMenu(){
 
 /* ---------- detail produk ---------- */
 const curPrice=()=>cur.m.price+cur.adds.size*CONFIG.addonPrice;
+function paintNf(){
+  const m=cur.m,r=m.n.map((v,i)=>[...cur.adds].reduce((a,k)=>a+CONFIG.addonNf[k][i],v));
+  $("#dNf").innerHTML=NF.map(([l,u],i)=>{const v=Math.round(r[i]*10)/10,d=Math.round((r[i]-m.n[i])*10)/10;return `<div class="nf-r"><span>${l}</span><b>${v===0?"":"± "}${v} ${u}${d?`<em>+${d}</em>`:""}</b></div>`}).join("");
+}
 function paintDetail(){
+  paintNf();
   $("#dIce").innerHTML=CONFIG.iceLevels.map((t,i)=>`<button class="${i===cur.ice?"on":""}" data-ice="${i}" aria-pressed="${i===cur.ice}">${t}</button>`).join("");
-  $("#dAdds").innerHTML=CONFIG.addons.map(([k,t])=>`<button class="${cur.adds.has(k)?"on":""}" data-addon="${k}" aria-pressed="${cur.adds.has(k)}">${cur.m.rec.includes(k)?'<span class="rec">★ Recommended</span>':""}${t}<small>+${rupiah(CONFIG.addonPrice)}</small></button>`).join("");
+  $("#dAdds").innerHTML=CONFIG.addons.map(([k,t])=>`<button class="${cur.adds.has(k)?"on":""}" data-addon="${k}" aria-pressed="${cur.adds.has(k)}">${cur.m.rec.includes(k)?'<span class="rec">★<span class="rt"> Recommended</span></span>':""}${t}<small>+${rupiah(CONFIG.addonPrice)}</small></button>`).join("");
   $("#dAdd").textContent="Add to Cart · "+rupiah(curPrice());
 }
 function openDetail(id){
@@ -599,7 +614,6 @@ function openDetail(id){
   $("#dName").textContent=m.name;$("#dPrice").textContent=rupiah(m.price);$("#dDesc").textContent=m.desc;
   $("#dImg").style.background=soft(m);$("#dImg").innerHTML=media(m);
   $("#dIng").innerHTML=m.ing.map(i=>`<li>${i}</li>`).join("");
-  $("#dNf").innerHTML=NF.map(([l,u],i)=>`<div class="nf-r"><span>${l}</span><b>${m.n[i]===0?"":"± "}${m.n[i]} ${u}</b></div>`).join("");
   paintDetail();$("#detail").classList.add("open");document.body.style.overflow="hidden";$("#dClose").focus();
 }
 function closeDetail(){$("#detail").classList.remove("open");document.body.style.overflow=""}
