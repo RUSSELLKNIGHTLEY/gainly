@@ -708,7 +708,7 @@ function validate(){
    ============================================================ */
 function makeOrderId(){
   const d = new Date(), p = n => String(n).padStart(2,"0");
-  return "GNL-" + String(d.getFullYear()).slice(2) + p(d.getMonth()+1) + p(d.getDate())
+  return "GNY-" + String(d.getFullYear()).slice(2) + p(d.getMonth()+1) + p(d.getDate())
        + "-" + Math.floor(1000 + Math.random()*9000);
 }
 
