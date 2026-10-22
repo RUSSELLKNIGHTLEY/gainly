@@ -551,7 +551,7 @@ input,select{font-family:inherit;}
 
 <script>
 const CONFIG={
-  whatsapp:"6287784835252",
+  whatsapp:"6287771578137",
   logUrl:"https://script.google.com/macros/s/AKfycby_eoGcCMjhhgZ-HLqE3G35BB5zwZOjwWsMyactW4lPw93FMAFR3CmmfYbqr4ArU1B7iw/exec",
   qrisImage:"qris.png",
   merchantName:"Giny’s",
@@ -708,7 +708,7 @@ function validate(){
    ============================================================ */
 function makeOrderId(){
   const d = new Date(), p = n => String(n).padStart(2,"0");
-  return "GNL-" + String(d.getFullYear()).slice(2) + p(d.getMonth()+1) + p(d.getDate())
+  return "GNY-" + String(d.getFullYear()).slice(2) + p(d.getMonth()+1) + p(d.getDate())
        + "-" + Math.floor(1000 + Math.random()*9000);
 }
 
