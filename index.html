@@ -361,6 +361,12 @@ input,select{font-family:inherit;}
 @media(max-width:900px){.dimg{aspect-ratio:1;max-width:400px;margin-inline:auto}}
 @media(max-width:640px){.dact{grid-template-columns:1fr}.dact .btn-pay{order:-1}.seg button{padding:12px 4px;font-size:.86rem}}
 @media(max-width:480px){.adds .rt{display:none}}
+.recap .rl{align-items:flex-start}.recap .rl b{white-space:nowrap;flex:none}
+.recap .rl small{display:block;color:var(--muted);font-size:.84rem;line-height:1.45}
+.queue{display:inline-flex;align-items:center;gap:8px;margin:12px 0 0;background:var(--green-800);color:#fff;border-radius:999px;padding:7px 16px;font-size:.92rem;font-weight:500}
+.queue b{font-family:var(--font-display);font-size:1.25rem;color:var(--lime);font-weight:600;line-height:1}
+.queue b.txt{font-family:inherit;font-size:.88rem}
+.btn-wa.wait{opacity:.6;pointer-events:none}
 </style>
 </head>
 <body>
@@ -484,6 +490,7 @@ input,select{font-family:inherit;}
       <div>
         <h3 id="payTitle">Kirim pesanan kamu</h3>
         <p class="oid">Order <b id="orderId">—</b></p>
+        <p class="queue">Antrian Order: <b id="queueNo">…</b></p>
       </div>
       <button class="btn-x" id="closeModal" aria-label="Tutup">✕</button>
     </div>
@@ -499,7 +506,7 @@ input,select{font-family:inherit;}
       </ol>
 
       <a class="btn-wa" id="waSendBtn" href="#" target="_blank" rel="noopener">
-        <span aria-hidden="true">💬</span> Kirim pesanan ke WhatsApp
+        <span aria-hidden="true">💬</span> <span id="waLbl">Kirim pesanan ke WhatsApp</span>
       </a>
       <p class="modal-fine">Pesanan belum terkunci sebelum dikirim.</p>
     </div>
@@ -521,7 +528,7 @@ input,select{font-family:inherit;}
 
       <ol class="steps">
         <li>Scan QRIS di atas pakai e-wallet atau mobile banking.</li>
-        <li>Ketik nominalnya <b id="stepAmount">—</b> </li>
+        <li>Ketik nominalnya <b id="stepAmount">—</b> persis, jangan dibulatkan.</li>
         <li>Screenshot bukti bayarnya.</li>
         <li>Kirim screenshot itu di chat WhatsApp tadi.</li>
       </ol>
@@ -727,6 +734,7 @@ function buildWaText(o, withProof){
     "Halo " + CONFIG.merchantName + "! Saya mau pesan.",
     "",
     "Order ID: " + o.id,
+    "Antrian Order: " + (o.queue || "-"),
     "Nama: " + o.name,
     "No. WA: " + o.phone,
     "Email: " + (o.email || "-"),
@@ -744,21 +752,13 @@ function buildWaText(o, withProof){
 }
 
 /* catat order ke Google Sheet — diam-diam, tidak menghambat pembeli */
-function logOrder(o){
-  if (!CONFIG.logUrl) return;
+async function logOrder(o){
+  if(!CONFIG.logUrl)return null;
+  const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),12000);
   try{
-    fetch(CONFIG.logUrl, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({
-        id: o.id, name: o.name, phone: o.phone, email: o.email || "",
-        items: itemLines().join(" | "),
-        total: o.total, date: o.date, time: o.time,
-        location: CONFIG.pickupLocation
-      })
-    }).catch(() => {});
-  }catch(_){}
+    const r=await fetch(CONFIG.logUrl,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},signal:ctrl.signal,body:JSON.stringify({id:o.id,name:o.name,phone:o.phone,email:o.email||"",items:itemLines().join(" | "),total:o.total,date:o.date,time:o.time,location:CONFIG.pickupLocation})});
+    const j=await r.json();return j&&j.ok&&j.queue?j.queue:null;
+  }catch(_){return null}finally{clearTimeout(t)}
 }
 
 function renderQris(){
@@ -779,38 +779,23 @@ function renderQris(){
    ============================================================ */
 let currentOrder = null;
 
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function setWa(){const b="https://wa.me/"+CONFIG.whatsapp+"?text=";$("#waSendBtn").href=b+encodeURIComponent(buildWaText(currentOrder,false));$("#waProofBtn").href=b+encodeURIComponent(buildWaText(currentOrder,true))}
+function waBusy(on){$("#waSendBtn").classList.toggle("wait",on);$("#waLbl").textContent=on?"Menyiapkan nomor antrian…":"Kirim pesanan ke WhatsApp"}
+function paintQueue(){const o=currentOrder,q=$("#queueNo");q.textContent=o.pending?"…":(o.queue||"menyusul via WhatsApp");q.classList.toggle("txt",!o.pending&&!o.queue);waBusy(!!o.pending)}
+let lastSig="";
 function openModal(){
-  const data = validate();
-  if (!data) return;
-
-  currentOrder = { ...data, id: makeOrderId(), total: total() };
-
-  $("#orderId").textContent = currentOrder.id;
-  $("#recap").innerHTML =
-    itemLines().map(l => {
-      const i = l.lastIndexOf(" — ");
-      return '<div class="rl"><span>' + l.slice(0, i) + '</span><b>' + l.slice(i+3) + '</b></div>';
-    }).join("") +
-    '<div class="rl" style="margin-top:8px"><b>Total</b><b>' + rupiah(currentOrder.total) + '</b></div>' +
-    '<div class="meta">' + currentOrder.name + ' · ' + currentOrder.phone + '<br>' +
-    prettyDate(currentOrder.date) + ' · ' + currentOrder.time + '</div>';
-
-  $("#payAmount").textContent  = rupiah(currentOrder.total);
-  $("#stepAmount").textContent = rupiah(currentOrder.total);
-
-  const base = "https://wa.me/" + CONFIG.whatsapp + "?text=";
-  $("#waSendBtn").href  = base + encodeURIComponent(buildWaText(currentOrder, false));
-  $("#waProofBtn").href = base + encodeURIComponent(buildWaText(currentOrder, true));
-
-  $("#step1").hidden = false;
-  $("#step2").hidden = true;
-  $("#payTitle").textContent = "Kirim pesanan kamu";
-
-  logOrder(currentOrder);
-
-  $("#payModal").classList.add("open");
-  document.body.style.overflow = "hidden";
-  $("#closeModal").focus();
+  const data=validate();if(!data)return;
+  const sig=JSON.stringify([data,cart]),fresh=sig!==lastSig;
+  if(fresh){lastSig=sig;currentOrder={...data,id:makeOrderId(),total:total(),queue:null,pending:true}}
+  const o=currentOrder;
+  $("#orderId").textContent=o.id;
+  $("#recap").innerHTML=cart.map(l=>`<div class="rl"><span>${l.qty}× ${item(l.id).name}<small>${opts(l)}</small></span><b>${rupiah(unit(l)*l.qty)}</b></div>`).join("")+`<div class="rl" style="margin-top:8px"><b>Total</b><b>${rupiah(o.total)}</b></div><div class="meta">${esc(o.name)} · ${esc(o.phone)}<br>${prettyDate(o.date)} · ${o.time}</div>`;
+  $("#payAmount").textContent=rupiah(o.total);$("#stepAmount").textContent=rupiah(o.total);
+  $("#step1").hidden=false;$("#step2").hidden=true;$("#payTitle").textContent="Kirim pesanan kamu";
+  setWa();paintQueue();
+  $("#payModal").classList.add("open");document.body.style.overflow="hidden";$("#closeModal").focus();
+  if(fresh)logOrder(o).then(q=>{o.queue=q;o.pending=false;if(o===currentOrder){setWa();paintQueue()}});
 }
 
 function goStep2(){
@@ -846,7 +831,7 @@ $("#detail").addEventListener("click",e=>{if(e.target.id==="detail")closeDetail(
 $("#clearBtn").addEventListener("click",()=>{if(!cart.length)return;cart.length=0;renderCart();showToast("Pesanan dikosongkan")});
 $("#payBtn").addEventListener("click",openModal);
 $("#closeModal").addEventListener("click",closeModal);
-$("#waSendBtn").addEventListener("click",()=>setTimeout(goStep2,400));
+$("#waSendBtn").addEventListener("click",e=>{if(e.currentTarget.classList.contains("wait")){e.preventDefault();return}setTimeout(goStep2,400)});
 $("#payModal").addEventListener("click",e=>{if(e.target.id==="payModal")closeModal()});
 document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if($("#payModal").classList.contains("open"))closeModal();else if($("#detail").classList.contains("open"))closeDetail()});
 $("#copyAmount").addEventListener("click",async()=>{if(!currentOrder)return;try{await navigator.clipboard.writeText(String(currentOrder.total));showToast("Nominal disalin: "+currentOrder.total)}catch(_){showToast("Nominal: "+currentOrder.total)}});
