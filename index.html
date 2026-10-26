@@ -243,7 +243,7 @@ input,select{font-family:inherit;}
 .btn-copy:hover{background:var(--lime-soft);border-color:var(--lime);}
 
 .qris-frame{border:1px solid var(--line);border-radius:var(--r-md);padding:18px;text-align:center;background:#fff;}
-.qris-frame img{width:min(260px,100%);margin-inline:auto;border-radius:8px;}
+.qris-frame img{width:min(360px,100%);margin-inline:auto;border-radius:8px;}
 .qris-missing{border:2px dashed var(--line);border-radius:var(--r-sm);padding:34px 20px;color:var(--muted);font-size:.88rem;line-height:1.6;}
 .qris-missing code{background:#EDEADF;padding:2px 6px;border-radius:4px;font-size:.85em;}
 .qris-cap{margin:14px 0 0;font-size:.84rem;color:var(--muted);}
@@ -551,7 +551,7 @@ input,select{font-family:inherit;}
 
 <script>
 const CONFIG={
-  whatsapp:"6287771578137",
+  whatsapp:"6281197092328",
   logUrl:"https://script.google.com/macros/s/AKfycby_eoGcCMjhhgZ-HLqE3G35BB5zwZOjwWsMyactW4lPw93FMAFR3CmmfYbqr4ArU1B7iw/exec",
   qrisImage:"qris.png",
   merchantName:"Giny’s",
@@ -708,7 +708,7 @@ function validate(){
    ============================================================ */
 function makeOrderId(){
   const d = new Date(), p = n => String(n).padStart(2,"0");
-  return "GNY-" + String(d.getFullYear()).slice(2) + p(d.getMonth()+1) + p(d.getDate())
+  return "GNL-" + String(d.getFullYear()).slice(2) + p(d.getMonth()+1) + p(d.getDate())
        + "-" + Math.floor(1000 + Math.random()*9000);
 }
 
